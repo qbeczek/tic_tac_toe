@@ -3,17 +3,16 @@ name: build CI
 on: [push, pull_request]
 
 jobs:
-  pre-conf:
-    name: install vcpkg
-    runs-on: ubuntu-latest
-    container:
-      image: qbejk/ci:latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: install vcpkg
-      run: |
-          chmod +x install_vcpkg.sh
-          ./install_vcpkg.sh
+  # pre-conf:
+  #   name: install vcpkg
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: qbejk/ci:latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: install vcpkg
+  #     run: |
+
   build:
     name: build
     runs-on: ubuntu-latest
@@ -23,7 +22,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: build application
       run: |
-          cmake -S . -B build
+          chmod +x install_vcpkg.sh
+          ./install_vcpkg.sh
+          ls -la
+          cmake -S . -B build 
           cmake --build build --target all -j 9
   format_check:
     name: check_formatting
