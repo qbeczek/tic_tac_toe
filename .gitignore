@@ -1,8 +1,17 @@
 # vs code files
 .vscode/
 
+# vs files
+.vs
+
+# bin
+[Bb]in/
+
 # build files
 [Bb]uild/
+
+# vcpkg files
+vcpkg/
 
 # Prerequisites
 *.d

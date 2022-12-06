@@ -3,6 +3,17 @@ name: build CI
 on: [push, pull_request]
 
 jobs:
+  pre-conf:
+    name: install vcpkg
+    runs-on: ubuntu-latest
+    container:
+      image: qbejk/ci:latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: install vcpkg
+      run: |
+          chmod +x install_vcpkg.sh
+          ./install_vcpkg.sh
   build:
     name: build
     runs-on: ubuntu-latest
